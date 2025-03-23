@@ -53,3 +53,7 @@ body {
     color: var(--color-accent-red);
     font-weight: bold;
 }
+
+.error {
+    color: var(--color-accent-red);
+}

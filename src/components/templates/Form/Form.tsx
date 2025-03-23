@@ -1,19 +1,35 @@
-import type { ReactNode } from 'react';
+import type { FormHTMLAttributes, HTMLAttributes, ReactNode } from 'react';
+import styles from './Form.module.css';
 
-interface FormContainterProps {
+interface FormContainterProps extends FormHTMLAttributes<HTMLFormElement> {
     children: ReactNode;
 }
 
-function FormContainer({ children }: FormContainterProps) {
-    return <form>{children}</form>;
+function FormContainer({ children, ...props }: FormContainterProps) {
+    return (
+        <form className={styles.form_container} {...props}>
+            {children}
+        </form>
+    );
 }
 
-interface FormSectionProps {
+interface FormSectionProps extends HTMLAttributes<HTMLElement> {
+    columns?: number;
     children: ReactNode;
 }
 
-function FormSection({ children }: FormSectionProps) {
-    return <section>{children}</section>;
+function FormSection({ columns = 1, children, ...props }: FormSectionProps) {
+    return (
+        <section
+            {...props}
+            className={styles.form_section}
+            style={{
+                gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))`,
+            }}
+        >
+            {children}
+        </section>
+    );
 }
 
 export const Form = {
