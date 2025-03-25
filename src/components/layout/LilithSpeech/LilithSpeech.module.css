@@ -54,9 +54,6 @@
 
     p {
         color: var(--color-accent-orange);
-    }
-
-    p:last-child {
         text-align: center;
     }
 

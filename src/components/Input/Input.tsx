@@ -5,7 +5,6 @@ import styles from './Input.module.css';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
     label?: string;
-    id: string;
     state?: State<string>;
     error: ErrorObject;
 }

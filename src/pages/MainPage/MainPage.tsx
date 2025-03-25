@@ -1,22 +1,35 @@
 import { Button } from '@/components/Button/Button';
 import { Input } from '@/components/Input/Input';
-import { LilithSpeech } from '@/components/layout/LilithSpeech/LilithSpeech';
+import { Form } from '@/components/templates/Form/Form';
+import { useProfileContext } from '@/contexts/ProfileContext';
 import { useForm } from '@/hooks/useForm';
 import { useObjectState } from '@/hooks/useObjectState';
 import { Register, type RegisterType } from '@/schemas/Register';
-
-const firstMessage = [
-    'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus iure animi dolor corrupti, doloribus, quae, quas autem enim voluptatibus neque dolorum quam aspernatur. Sunt dicta veniam distinctio, praesentium molestiae quae.',
-    'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Omnis, corrupti fuga? Enim, molestiae, amet temporibus explicabo deserunt iusto, corrupti ab dignissimos illo neque debitis ex quos. Non excepturi hic impedit.',
-];
+import { useNavigate } from 'react-router-dom';
 
 export function MainPage() {
+    const navigate = useNavigate();
+    const { setProfile } = useProfileContext();
+
     const [register, setRegisterProp] = useObjectState<RegisterType>({
         name: '',
         age: '',
     });
 
-    const { handleSubmit, errors } = useForm(register, Register, () => {});
+    function onRegister(data: RegisterType) {
+        setProfile({
+            age: Number.parseInt(data.age),
+            name: data.name,
+        });
+
+        navigate('/introduction');
+    }
+
+    const { handleSubmit, errors } = useForm({
+        values: register,
+        validator: Register,
+        onSubmit: onRegister,
+    });
 
     return (
         <>
@@ -37,25 +50,31 @@ export function MainPage() {
                 suas para fazermos seu{' '}
                 <span className="highlight">Registro Escolar</span>:
             </p>
-            <form onSubmit={handleSubmit}>
-                <Input
-                    label="Seu Nome"
-                    id="name"
-                    state={[register.name, setRegisterProp]}
-                    required
-                    error={errors.name}
-                />
-                <Input
-                    type="number"
-                    label="Sua Idade (Anos)"
-                    state={[register.age, setRegisterProp]}
-                    id="age"
-                    required
-                    error={errors.age}
-                />
+            <Form.Container
+                formTitle="Registro de Aluno"
+                onSubmit={handleSubmit}
+            >
+                <Form.Section>
+                    <Input
+                        label="Seu Nome"
+                        id="name"
+                        state={[register.name, setRegisterProp]}
+                        required
+                        error={errors.name}
+                    />
+                </Form.Section>
+                <Form.Section>
+                    <Input
+                        type="number"
+                        label="Sua Idade (Anos)"
+                        state={[register.age, setRegisterProp]}
+                        id="age"
+                        required
+                        error={errors.age}
+                    />
+                </Form.Section>
                 <Button type="submit">Confirmar</Button>
-            </form>
-            <LilithSpeech message={firstMessage} />
+            </Form.Container>
         </>
     );
 }

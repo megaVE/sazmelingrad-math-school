@@ -1,0 +1,18 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+
+    font-weight: bold;
+    font-size: 2em;
+    margin-top: 2rem;
+
+    button {
+        padding: 1rem;
+        text-transform: uppercase;
+        min-width: 10rem;
+    }
+}

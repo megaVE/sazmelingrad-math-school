@@ -2,14 +2,16 @@ import type { FormHTMLAttributes, HTMLAttributes, ReactNode } from 'react';
 import styles from './Form.module.css';
 
 interface FormContainterProps extends FormHTMLAttributes<HTMLFormElement> {
+    formTitle?: ReactNode;
     children: ReactNode;
 }
 
-function FormContainer({ children, ...props }: FormContainterProps) {
+function FormContainer({ formTitle, children, ...props }: FormContainterProps) {
     return (
-        <form className={styles.form_container} {...props}>
-            {children}
-        </form>
+        <div className={styles.form_container}>
+            {formTitle && <h2>{formTitle}</h2>}
+            <form {...props}>{children}</form>
+        </div>
     );
 }
 

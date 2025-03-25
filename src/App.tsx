@@ -2,6 +2,8 @@ import styles from './App.module.css';
 
 import { Footer } from '@/components/layout/Footer/Footer';
 import { Header } from '@/components/layout/Header/Header';
+import { ProfileContextProvider } from '@/contexts/ProfileContext';
+import { IntroductionPage } from '@/pages/IntroductionPage/IntroductionPage';
 import { MainPage } from '@/pages/MainPage/MainPage';
 import {
     Navigate,
@@ -19,13 +21,19 @@ export function App() {
             path: '/home',
             element: <MainPage />,
         },
+        {
+            path: '/introduction',
+            element: <IntroductionPage />,
+        },
     ]);
 
     return (
         <>
             <Header />
             <main className={styles.container}>
-                <RouterProvider router={router} />
+                <ProfileContextProvider>
+                    <RouterProvider router={router} />
+                </ProfileContextProvider>
             </main>
             <Footer />
         </>
