@@ -19,18 +19,24 @@ export function DialogRenderer<T extends string>({
 
     function handleFeedback(feedback: string) {
         setDialogKey(feedback as T);
+        setIsWaitingFeedback(false);
+    }
+
+    function onSpeechFinish() {
+        if (currentDialog.onFinish) {
+            currentDialog.onFinish();
+        }
+        if (currentDialog.nextNodeKey) {
+            return handleFeedback(currentDialog.nextNodeKey);
+        }
+        setIsWaitingFeedback(false);
     }
 
     return (
         <>
             <LilithSpeech
                 message={currentDialog.message}
-                onFinish={() => {
-                    if (currentDialog.onFinish) {
-                        currentDialog.onFinish();
-                    }
-                    setIsWaitingFeedback(true);
-                }}
+                onFinish={onSpeechFinish}
             />
             {isWaitingFeedback && currentDialog.options && (
                 <Feedback

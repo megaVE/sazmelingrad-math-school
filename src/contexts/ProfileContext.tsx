@@ -7,6 +7,9 @@ export type ProfileType = {
     age?: number;
     gender?: 'male' | 'female' | 'other';
     knowledgeLevel?: DifficultyType;
+    isReady?: boolean;
+    score?: number;
+    currentQuestion?: number;
 };
 
 type ProfileContextType = {
@@ -27,7 +30,9 @@ export function useProfileContext() {
 }
 
 export function ProfileContextProvider({ children }: { children: ReactNode }) {
-    const [profile, _, setProfile] = useObjectState<ProfileType>({});
+    const [profile, _, setProfile] = useObjectState<ProfileType>({
+        isReady: false,
+    });
 
     return (
         <ProfileContext.Provider value={{ profile, setProfile }}>

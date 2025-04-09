@@ -5,6 +5,7 @@ type DialogNode = {
 
     options?: DialogOption[];
     onFinish?: () => void;
+    nextNodeKey?: string;
 };
 
 type DialogOption = SelectOption & {

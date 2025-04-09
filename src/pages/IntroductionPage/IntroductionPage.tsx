@@ -1,5 +1,6 @@
 import type { DialogNode } from '@/@types/Dialog';
 import { DialogRenderer } from '@/components/templates/Dialog/Dialog';
+import type { DifficultyType } from '@/constants/maps/Difficulty';
 import { useProfileContext } from '@/contexts/ProfileContext';
 import { useNavigate } from 'react-router-dom';
 
@@ -9,6 +10,11 @@ export function IntroductionPage() {
 
     const firstDialog =
         !profile.name || !profile.age ? 'errorDialog' : 'introDialog';
+
+    function startWithKnowledgeLevel(knowledgeLevel: DifficultyType) {
+        setProfile({ knowledgeLevel });
+        navigate('/tutorial');
+    }
 
     const errorDialog: DialogNode = {
         message: [
@@ -54,8 +60,9 @@ export function IntroductionPage() {
     const easyStart: DialogNode = {
         message: [
             'Ah, tudo bem. Eu entendo que sua cabecinha deve ser meio limitada, então vamos tentar te ajudar com isso.',
+            '',
         ],
-        onFinish: () => setProfile({ ...profile, knowledgeLevel: 'easy' }),
+        onFinish: () => startWithKnowledgeLevel('easy'),
     };
 
     const mediumDialog: DialogNode = {
@@ -77,11 +84,13 @@ export function IntroductionPage() {
             },
         ],
     };
+
     const mediumStart: DialogNode = {
         message: [
             'Entendo. Vocês têm suas dificuldades e eu preciso ser paciente com isso. É por este motivo que eu fui criada, afinal...',
+            '',
         ],
-        onFinish: () => setProfile({ ...profile, knowledgeLevel: 'medium' }),
+        onFinish: () => startWithKnowledgeLevel('medium'),
     };
 
     const hardDialog: DialogNode = {
@@ -107,8 +116,9 @@ export function IntroductionPage() {
     const hardStart: DialogNode = {
         message: [
             'Tudo bem. Eu entendo que alguns desses tópicos podem parecer assustadores, principalmente quando é sua primeira vez, mas você pode revisar sua escolha mais tarde quando sentir-se mais habilitado a trabalhar com esses tópicos que mencionei.',
+            '',
         ],
-        onFinish: () => setProfile({ ...profile, knowledgeLevel: 'hard' }),
+        onFinish: () => startWithKnowledgeLevel('hard'),
     };
 
     const veryHardDialog: DialogNode = {
@@ -136,8 +146,9 @@ export function IntroductionPage() {
     const veryHardStart: DialogNode = {
         message: [
             'É claro, isso foi uma piada. O que você estaria fazendo aqui afinal se já estivesse nesse nível?',
+            '',
         ],
-        onFinish: () => setProfile({ ...profile, knowledgeLevel: 'very_hard' }),
+        onFinish: () => startWithKnowledgeLevel('very_hard'),
     };
 
     const ultimateDialog: DialogNode = {

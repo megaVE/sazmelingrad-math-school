@@ -5,6 +5,9 @@ import { Header } from '@/components/layout/Header/Header';
 import { ProfileContextProvider } from '@/contexts/ProfileContext';
 import { IntroductionPage } from '@/pages/IntroductionPage/IntroductionPage';
 import { MainPage } from '@/pages/MainPage/MainPage';
+import { QuestionPage } from '@/pages/QuestionPage/QuestionPage';
+import { RecoverPage } from '@/pages/RecoverPage/RecoverPage';
+import { TutorialPage } from '@/pages/TutorialPage/TutorialPage';
 import {
     Navigate,
     RouterProvider,
@@ -24,6 +27,18 @@ export function App() {
         {
             path: '/introduction',
             element: <IntroductionPage />,
+        },
+        {
+            path: '/tutorial',
+            element: <TutorialPage />,
+        },
+        {
+            path: '/question/:id',
+            element: <QuestionPage />,
+        },
+        {
+            path: '/recover',
+            element: <RecoverPage />,
         },
     ]);
 
