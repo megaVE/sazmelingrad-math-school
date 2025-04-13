@@ -1,12 +1,10 @@
-import type { Difficulty } from './Difficulty';
-import type { SelectOption } from './SelectOption';
+import type { SelectOption } from '@/@types/SelectOption';
+import type { DifficultyType } from '@/constants/maps/Difficulty';
 
 export type Question = {
-    title: string;
-    difficulty: Difficulty;
+    difficulty: DifficultyType;
     description: string;
     answers: SelectOption<string>[];
     correctAnswer: string;
     hints?: string[];
-    customScore?: undefined;
 };

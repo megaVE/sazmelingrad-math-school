@@ -16,11 +16,17 @@ export function LilithSpeech({
     onFinish,
 }: LilithSpeechProps) {
     const [currentMessage, setCurrentMessage] = useState<number>(0);
+    const [messageKey, setMessageKey] = useState('0');
 
     const hasNextMessage = currentMessage < message.length - 1;
 
     function toNextMessage() {
-        setCurrentMessage(state => (hasNextMessage ? state + 1 : state));
+        setCurrentMessage(state => {
+            if (!hasNextMessage) return state;
+
+            setMessageKey(state => `${Number.parseInt(state) + 1}`);
+            return state + 1;
+        });
     }
 
     useEffect(() => {
@@ -31,6 +37,7 @@ export function LilithSpeech({
 
     useEffect(() => {
         setCurrentMessage(0);
+        setMessageKey('0');
     }, [message]);
 
     return (
@@ -40,7 +47,9 @@ export function LilithSpeech({
                 <img src={LilithImage} {...imageProps} alt="Lilith Speech" />
             </figure>
             <div className={styles.text_container}>
-                <p>{htmlParse(message[currentMessage] ?? '')}</p>
+                <p key={messageKey}>
+                    {htmlParse(message[currentMessage] ?? '')}
+                </p>
                 {hasNextMessage && <p>&#11167;</p>}
             </div>
         </div>

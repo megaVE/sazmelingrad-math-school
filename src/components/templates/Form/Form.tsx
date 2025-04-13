@@ -20,11 +20,16 @@ interface FormSectionProps extends HTMLAttributes<HTMLElement> {
     children: ReactNode;
 }
 
-function FormSection({ columns = 1, children, ...props }: FormSectionProps) {
+function FormSection({
+    columns = 1,
+    className,
+    children,
+    ...props
+}: FormSectionProps) {
     return (
         <section
             {...props}
-            className={styles.form_section}
+            className={`${styles.form_section} ${className}`}
             style={{
                 gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))`,
             }}

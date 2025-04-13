@@ -1,0 +1,22 @@
+.text_container {
+    display: flex;
+    flex-direction: column;
+    max-width: 20rem;
+
+    label {
+        font-size: 1.2rem;
+        margin-bottom: 0.25rem;
+    }
+
+    textarea {
+        background-color: transparent;
+        border: 0.1rem solid var(--color-accent-orange);
+        border-radius: 0.4rem;
+        color: var(--color-text-primary);
+        resize: none;
+    }
+
+    textarea:focus {
+        outline: none;
+    }
+}

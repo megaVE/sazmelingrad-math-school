@@ -1,4 +1,5 @@
 import type { DialogNode } from '@/@types/Dialog';
+import { Title } from '@/components/Title';
 import { DialogRenderer } from '@/components/templates/Dialog/Dialog';
 import { useProfileContext } from '@/contexts/ProfileContext';
 import { useNavigate } from 'react-router-dom';
@@ -110,6 +111,7 @@ export function TutorialPage() {
 
     return (
         <>
+            <Title>Tutorial</Title>
             <DialogRenderer
                 startDialogKey={startDialogKey}
                 dialogsRecord={dialogsRecord}

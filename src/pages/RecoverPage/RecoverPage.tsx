@@ -1,6 +1,8 @@
 import type { DialogNode } from '@/@types/Dialog';
+import { Title } from '@/components/Title';
 import { DialogRenderer } from '@/components/templates/Dialog/Dialog';
 import { useProfileContext } from '@/contexts/ProfileContext';
+import { questions } from '@/db/questions';
 import { useNavigate } from 'react-router-dom';
 
 export function RecoverPage() {
@@ -20,7 +22,10 @@ export function RecoverPage() {
             return 'notReadyDialog';
         }
 
-        if (profile.currentQuestion && profile.currentQuestion < 100) {
+        if (
+            profile.currentQuestion &&
+            profile.currentQuestion < questions.length
+        ) {
             return 'pendingQuestionsDialog';
         }
 
@@ -84,6 +89,7 @@ export function RecoverPage() {
 
     return (
         <>
+            <Title>Recuperação de Progress</Title>
             <DialogRenderer
                 dialogsRecord={dialogsRecord}
                 startDialogKey="initialDialog"

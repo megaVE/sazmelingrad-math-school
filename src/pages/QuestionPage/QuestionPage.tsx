@@ -1,5 +1,7 @@
 import type { DialogNode } from '@/@types/Dialog';
+import { Title } from '@/components/Title';
 import { DialogRenderer } from '@/components/templates/Dialog/Dialog';
+import { QuestionRender } from '@/components/templates/Question/Question';
 import { questions } from '@/db/questions';
 import { useParams } from 'react-router-dom';
 
@@ -46,12 +48,15 @@ export function QuestionPage() {
     })();
 
     return (
-        <div>
-            Questão {questionId}
-            <DialogRenderer
-                dialogsRecord={dialogsRecord}
-                startDialogKey={startDialogKey}
-            />
-        </div>
+        <>
+            <Title>Questão {id}</Title>
+            <QuestionRender question={questions[0]} />
+            {false && (
+                <DialogRenderer
+                    dialogsRecord={dialogsRecord}
+                    startDialogKey={startDialogKey}
+                />
+            )}
+        </>
     );
 }

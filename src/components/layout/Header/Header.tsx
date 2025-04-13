@@ -1,4 +1,4 @@
-import { Splitter } from '@/components/Splitter/Splitter';
+import { Splitter } from '@/components/modular/Splitter/Splitter';
 import styles from './Header.module.css';
 
 export function Header() {

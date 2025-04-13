@@ -1,5 +1,5 @@
-import { Button } from '@/components/Button/Button';
-import { Input } from '@/components/Input/Input';
+import { Button } from '@/components/modular/Button/Button';
+import { Input } from '@/components/modular/Input/Input';
 import { Form } from '@/components/templates/Form/Form';
 import { useProfileContext } from '@/contexts/ProfileContext';
 import { useForm } from '@/hooks/useForm';

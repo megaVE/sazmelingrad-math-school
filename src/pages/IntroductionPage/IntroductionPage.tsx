@@ -1,4 +1,5 @@
 import type { DialogNode } from '@/@types/Dialog';
+import { Title } from '@/components/Title';
 import { DialogRenderer } from '@/components/templates/Dialog/Dialog';
 import type { DifficultyType } from '@/constants/maps/Difficulty';
 import { useProfileContext } from '@/contexts/ProfileContext';
@@ -188,6 +189,7 @@ export function IntroductionPage() {
 
     return (
         <>
+            <Title>Entrevista</Title>
             <DialogRenderer
                 dialogsRecord={dialogsRecord}
                 startDialogKey={firstDialog}

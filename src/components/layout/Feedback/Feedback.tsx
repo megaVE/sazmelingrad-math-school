@@ -1,5 +1,5 @@
 import type { DialogOption } from '@/@types/Dialog';
-import { Button } from '@/components/Button/Button';
+import { Button } from '@/components/modular/Button/Button';
 import styles from './Feedback.module.css';
 
 interface FeedbackProps {
@@ -17,6 +17,7 @@ export function Feedback({
         <div className={styles.container}>
             {options.map(({ label, value, onChoose }) => (
                 <Button
+                    className="feedback-button"
                     key={label}
                     onClick={() => {
                         onChoose?.();

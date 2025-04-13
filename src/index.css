@@ -9,6 +9,10 @@ a {
     color: inherit;
 }
 
+ul {
+    list-style-type: none;
+}
+
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -56,4 +60,10 @@ body {
 
 .error {
     color: var(--color-accent-red);
+}
+
+.feedback-button {
+    padding: 1rem;
+    text-transform: uppercase;
+    min-width: 10rem;
 }

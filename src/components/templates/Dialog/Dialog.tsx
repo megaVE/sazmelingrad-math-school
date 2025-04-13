@@ -29,7 +29,7 @@ export function DialogRenderer<T extends string>({
         if (currentDialog.nextNodeKey) {
             return handleFeedback(currentDialog.nextNodeKey);
         }
-        setIsWaitingFeedback(false);
+        setIsWaitingFeedback(true);
     }
 
     return (

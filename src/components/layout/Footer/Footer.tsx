@@ -1,4 +1,4 @@
-import { Splitter } from '@/components/Splitter/Splitter';
+import { Splitter } from '@/components/modular/Splitter/Splitter';
 import styles from './Footer.module.css';
 
 const currentYear = new Date().getFullYear();

@@ -36,8 +36,11 @@
     margin-bottom: 1rem;
 
     img {
-        filter: brightness(0) saturate(100%) invert(24%) sepia(78%)
-            saturate(2960%) hue-rotate(345deg) brightness(69%) contrast(97%);
+        /* filter: brightness(0) saturate(100%) invert(24%) sepia(78%)
+            saturate(2960%) hue-rotate(345deg) brightness(69%) contrast(97%); */
+
+        filter: brightness(0.7) saturate(120%) invert(20%) sepia(60%)
+            saturate(1200%) hue-rotate(345deg) brightness(90%) contrast(90%);
 
         max-width: 25rem;
     }
@@ -60,5 +63,22 @@
     div {
         display: flex;
         justify-content: center;
+    }
+}
+
+.text_container p:first-child {
+    overflow: hidden;
+    white-space: nowrap;
+    margin: 0 auto;
+    animation: typing 3s steps(50, end);
+}
+
+@keyframes typing {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 100%;
     }
 }

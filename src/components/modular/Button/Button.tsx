@@ -5,9 +5,13 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     children: ReactNode;
 }
 
-export function Button({ children, ...props }: ButtonProps) {
+export function Button({ className, children, ...props }: ButtonProps) {
     return (
-        <button className={styles.button} type="button" {...props}>
+        <button
+            className={`${styles.button} ${className}`}
+            type="button"
+            {...props}
+        >
             {children}
         </button>
     );

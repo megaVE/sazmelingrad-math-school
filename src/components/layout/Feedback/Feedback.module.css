@@ -9,10 +9,4 @@
     font-weight: bold;
     font-size: 2em;
     margin-top: 2rem;
-
-    button {
-        padding: 1rem;
-        text-transform: uppercase;
-        min-width: 10rem;
-    }
 }
