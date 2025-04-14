@@ -16,13 +16,26 @@ export function MainPage() {
         age: '',
     });
 
-    function onRegister(data: RegisterType) {
-        setProfile({
+    async function onRegister(data: RegisterType) {
+        const newProfileData = {
             age: Number.parseInt(data.age),
             name: data.name,
-        });
+        };
 
-        navigate('/introduction');
+        setProfile(newProfileData);
+
+        try {
+            const specialModule = await import(
+                '@/pages/SpecialPage/SpecialPage'
+            );
+
+            const isSpecialUser =
+                specialModule.validateSpecialUser(newProfileData);
+
+            navigate(isSpecialUser ? '/special' : '/introduction');
+        } catch {
+            navigate('/introduction');
+        }
     }
 
     const { handleSubmit, errors } = useForm({

@@ -1,5 +1,5 @@
 # Sazmelingrad Math School (Escola de Matemática de Sazmelingrado)
- Aplicação ReactJS + TypeScript com questões de matemática de multipla escolha | ReactJS + TypeScript application with multiple choice math questions 
+ReactJS + TypeScript application with multiple choice math questions | Aplicação ReactJS + TypeScript com questões de matemática de multipla escolha
 
 ## Description (Descrição)
 **Welcome, student!** You've received a special invitation to begin your studies at the National School of Sazmelingrad — the most prestigious school in the entire country. With its physical headquarters in Lilithingrad, the school has now launched a virtual portal, allowing students from all over the world to enjoy high-quality content from the comfort of their homes, all carefully curated by top-level teachers. And to make your journey even more special, you’ll have the support of our friendly **Red Guide**, who will accompany you every step of the way to ensure you have a truly unique experience.

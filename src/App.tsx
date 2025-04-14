@@ -7,6 +7,7 @@ import { IntroductionPage } from '@/pages/IntroductionPage/IntroductionPage';
 import { MainPage } from '@/pages/MainPage/MainPage';
 import { QuestionPage } from '@/pages/QuestionPage/QuestionPage';
 import { RecoverPage } from '@/pages/RecoverPage/RecoverPage';
+import { SpecialPageLoader } from '@/pages/SpecialPageLoader';
 import { TutorialPage } from '@/pages/TutorialPage/TutorialPage';
 import {
     Navigate,
@@ -39,6 +40,10 @@ export function App() {
         {
             path: '/recover',
             element: <RecoverPage />,
+        },
+        {
+            path: '/special',
+            element: <SpecialPageLoader />,
         },
     ]);
 
