@@ -13,6 +13,7 @@
         border: 0.1rem solid var(--color-accent-orange);
         border-radius: 0.4rem;
         color: var(--color-text-primary);
+        font-size: 1.4rem;
         resize: none;
     }
 

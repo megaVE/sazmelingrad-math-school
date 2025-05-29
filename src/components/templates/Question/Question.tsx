@@ -1,9 +1,9 @@
 import type { Question } from '@/@types/Question';
 import { Button } from '@/components/modular/Button/Button';
 import { TextArea } from '@/components/modular/TextArea/TextArea';
-import { DifficultyMap } from '@/constants/maps/Difficulty';
+import { DifficultyColorMap, DifficultyMap } from '@/constants/maps/Difficulty';
 import { questionScores } from '@/db/questions';
-import { type CSSProperties, useMemo, useState } from 'react';
+import { useState } from 'react';
 import { Form } from '../Form/Form';
 import styles from './Question.module.css';
 
@@ -17,37 +17,6 @@ export function QuestionRender({ question }: QuestionRenderProps) {
 
     const questionScore = questionScores[question.difficulty].hit;
 
-    const difficultyStyle = useMemo<Partial<CSSProperties>>(() => {
-        switch (question.difficulty) {
-            case 'easy':
-                return {
-                    backgroundColor: '#1a2e1a',
-                    color: '#a8ff60',
-                };
-
-            case 'medium':
-                return {
-                    backgroundColor: '#2e2a1a',
-                    color: '#ffd36e',
-                };
-
-            case 'hard':
-                return {
-                    backgroundColor: '#2e1e1a',
-                    color: '#ff6a00',
-                };
-
-            case 'very_hard':
-                return {
-                    backgroundColor: '#2e1a1a',
-                    color: '#ff3c3c',
-                };
-
-            default:
-                return {};
-        }
-    }, [question.difficulty]);
-
     function handleSelectAnswer(value: string) {
         setCurrentAnswer(state => (state === value ? '' : value));
     }
@@ -57,7 +26,9 @@ export function QuestionRender({ question }: QuestionRenderProps) {
     return (
         <div className={styles.container}>
             <div className={styles.question_header}>
-                <span style={{ ...difficultyStyle }}>
+                <span
+                    style={{ ...DifficultyColorMap.get(question.difficulty) }}
+                >
                     {DifficultyMap.get(question.difficulty)}
                 </span>
                 <span>
@@ -122,7 +93,12 @@ export function QuestionRender({ question }: QuestionRenderProps) {
             </Form.Section>
             {true && (
                 <Form.Section className={styles.sketch}>
-                    <TextArea label="Rascunho" error={undefined} rows={5} />
+                    <TextArea
+                        label="Rascunho"
+                        style={{ width: '100%' }}
+                        rows={5}
+                        fill
+                    />
                 </Form.Section>
             )}
         </div>

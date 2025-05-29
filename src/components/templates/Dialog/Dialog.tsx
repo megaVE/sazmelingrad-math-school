@@ -1,16 +1,18 @@
 import type { DialogNode } from '@/@types/Dialog';
 import { Feedback } from '@/components/layout/Feedback/Feedback';
 import { LilithSpeech } from '@/components/layout/LilithSpeech/LilithSpeech';
-import { useState } from 'react';
+import { type ReactNode, useEffect, useState } from 'react';
 
 interface DialogRendererProps<T extends string> {
     dialogsRecord: Record<T, DialogNode>;
     startDialogKey: T;
+    customSpeechComponent?: ReactNode;
 }
 
 export function DialogRenderer<T extends string>({
     dialogsRecord,
     startDialogKey,
+    customSpeechComponent,
 }: DialogRendererProps<T>) {
     const [isWaitingFeedback, setIsWaitingFeedback] = useState(false);
     const [dialogKey, setDialogKey] = useState(startDialogKey);
@@ -32,12 +34,20 @@ export function DialogRenderer<T extends string>({
         setIsWaitingFeedback(true);
     }
 
+    useEffect(() => {
+        if (customSpeechComponent && !currentDialog.message.length) {
+            onSpeechFinish();
+        }
+    }, [currentDialog, customSpeechComponent]);
+
     return (
         <>
-            <LilithSpeech
-                message={currentDialog.message}
-                onFinish={onSpeechFinish}
-            />
+            {customSpeechComponent ?? (
+                <LilithSpeech
+                    message={currentDialog.message}
+                    onFinish={onSpeechFinish}
+                />
+            )}
             {isWaitingFeedback && currentDialog.options && (
                 <Feedback
                     options={currentDialog.options}

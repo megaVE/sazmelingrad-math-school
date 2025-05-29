@@ -1,14 +1,16 @@
 import type { SelectOption } from './SelectOption';
+import type { ColorTheme } from './Themes';
 
-type DialogNode = {
+export type DialogOption = SelectOption & {
+    isBlocked?: boolean;
+    onChoose?: () => void;
+    theme?: ColorTheme;
+};
+
+export type DialogNode = {
     message: string[];
 
     options?: DialogOption[];
     onFinish?: () => void;
     nextNodeKey?: string;
-};
-
-type DialogOption = SelectOption & {
-    isBlocked?: boolean;
-    onChoose?: () => void;
 };

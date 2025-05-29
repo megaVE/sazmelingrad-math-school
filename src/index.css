@@ -23,6 +23,7 @@ input::-webkit-inner-spin-button {
 /* Firefox */
 input[type="number"] {
     -moz-appearance: textfield;
+    appearance: textfield;
 }
 
 html {
@@ -49,7 +50,7 @@ body {
     font-family: "Montserrat", sans-serif;
     background-color: var(--color-background-primary);
     color: var(--color-text-primary);
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     text-align: justify;
 }
 
@@ -66,4 +67,27 @@ body {
     padding: 1rem;
     text-transform: uppercase;
     min-width: 10rem;
+}
+
+.article {
+    border: 0.2rem solid var(--color-accent-orange);
+    border-radius: 0.4rem;
+    padding: 2rem;
+
+    p {
+        margin: 1rem 0;
+    }
+
+    p:first-child {
+        margin-top: 0;
+    }
+
+    p:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.text-spacing {
+    display: inline-block;
+    width: 1em;
 }

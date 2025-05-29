@@ -1,15 +1,19 @@
-import type { ErrorObject } from '@/@types/ErrorObject';
-import type { State } from '@/@types/State';
+import type { BaseInputProps } from '@/@types/BaseInput';
 import type { TextareaHTMLAttributes } from 'react';
 import styles from './TextArea.module.css';
 
-interface TextAreaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
-    label?: string;
-    state?: State<string>;
-    error: ErrorObject;
-}
+interface TextAreaProps
+    extends TextareaHTMLAttributes<HTMLTextAreaElement>,
+        BaseInputProps {}
 
-export function TextArea({ label, id, state, error, ...props }: TextAreaProps) {
+export function TextArea({
+    label,
+    id,
+    state,
+    error,
+    fill,
+    ...props
+}: TextAreaProps) {
     const stateProps: Partial<TextareaHTMLAttributes<HTMLTextAreaElement>> =
         state
             ? {
@@ -19,7 +23,10 @@ export function TextArea({ label, id, state, error, ...props }: TextAreaProps) {
             : {};
 
     return (
-        <div className={styles.text_container}>
+        <div
+            className={styles.text_container}
+            style={{ ...(fill && { maxWidth: 'none' }) }}
+        >
             {label && <label htmlFor={id}>{label}:</label>}
             <textarea id={id} name={id} rows={2} {...stateProps} {...props} />
             {error && <small className="error">{error[0]}</small>}

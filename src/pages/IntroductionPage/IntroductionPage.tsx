@@ -117,6 +117,7 @@ export function IntroductionPage() {
     const hardStart: DialogNode = {
         message: [
             'Tudo bem. Eu entendo que alguns desses tópicos podem parecer assustadores, principalmente quando é sua primeira vez, mas você pode revisar sua escolha mais tarde quando sentir-se mais habilitado a trabalhar com esses tópicos que mencionei.',
+
             '',
         ],
         onFinish: () => startWithKnowledgeLevel('hard'),

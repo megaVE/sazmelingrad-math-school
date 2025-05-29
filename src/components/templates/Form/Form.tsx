@@ -10,7 +10,14 @@ function FormContainer({ formTitle, children, ...props }: FormContainterProps) {
     return (
         <div className={styles.form_container}>
             {formTitle && <h2>{formTitle}</h2>}
-            <form {...props}>{children}</form>
+            <form
+                onSubmit={e => {
+                    e.preventDefault();
+                }}
+                {...props}
+            >
+                {children}
+            </form>
         </div>
     );
 }

@@ -1,0 +1,9 @@
+.introduction {
+    margin: 0 auto;
+    max-width: 90rem;
+
+    p {
+        font-size: 1.8rem;
+        line-height: 1.5;
+    }
+}

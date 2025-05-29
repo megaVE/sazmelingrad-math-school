@@ -1,3 +1,5 @@
+import styles from './MainPage.module.css';
+
 import { Button } from '@/components/modular/Button/Button';
 import { Input } from '@/components/modular/Input/Input';
 import { Form } from '@/components/templates/Form/Form';
@@ -46,23 +48,26 @@ export function MainPage() {
 
     return (
         <>
-            <p>
-                Seja bem-vindo(a), estudante, à
-                <span className="highlight">
-                    {' '}
-                    Escola Nacional de Matemática de Sazmelingrad
-                </span>
-                . Em nossa plataforma virtual, você será guiado diretamente por
-                nossa instrutora especializada
-                <span className="highlight"> Guia Vermelha</span>, que vai
-                interagir e coordenar você por todo este processo.
-            </p>
-            <br />
-            <p>
-                Para começarmos, vamos precisar de algumas informações básicas
-                suas para fazermos seu{' '}
-                <span className="highlight">Registro Escolar</span>:
-            </p>
+            <article className={`${styles.introduction} article`}>
+                <p>
+                    <span className="text-spacing" />
+                    Seja bem-vindo(a), estudante, à
+                    <span className="highlight">
+                        {' '}
+                        Escola Nacional de Matemática de Sazmelingrad
+                    </span>
+                    . Em nossa plataforma virtual, você será guiado diretamente
+                    por nossa instrutora especializada
+                    <span className="highlight"> Guia Vermelha</span>, que vai
+                    interagir e coordenar você por todo este processo.
+                </p>
+                <p>
+                    <span className="text-spacing" />
+                    Para começarmos, vamos precisar de algumas informações
+                    básicas suas para fazermos seu{' '}
+                    <span className="highlight">Registro Escolar</span>:
+                </p>
+            </article>
             <Form.Container
                 formTitle="Registro de Aluno"
                 onSubmit={handleSubmit}

@@ -5,7 +5,7 @@
 
     label {
         font-size: 1.2rem;
-        margin-bottom: 0.25rem;
+        margin-bottom: 0.5rem;
     }
 
     input {
@@ -13,6 +13,7 @@
         border: 0.1rem solid var(--color-accent-orange);
         border-radius: 0.4rem;
         color: var(--color-text-primary);
+        font-size: 1.4rem;
     }
 
     input:focus {

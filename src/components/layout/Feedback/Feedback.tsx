@@ -15,7 +15,7 @@ export function Feedback({
 
     return (
         <div className={styles.container}>
-            {options.map(({ label, value, onChoose }) => (
+            {options.map(({ label, value, onChoose, theme }) => (
                 <Button
                     className="feedback-button"
                     key={label}
@@ -23,6 +23,7 @@ export function Feedback({
                         onChoose?.();
                         handleFeedback(value);
                     }}
+                    theme={theme}
                 >
                     {label}
                 </Button>
