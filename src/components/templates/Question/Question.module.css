@@ -52,11 +52,12 @@
     flex: 1;
     width: 100%;
     padding: 0 1rem;
-
+    
     justify-content: center;
-
+    
     li {
-        border: 0.2rem solid var(--color-accent-orange);
+        border: 0.1rem solid #ff6a0033;
+        /* border: 0.2rem solid var(--color-accent-orange); */
         text-align: center;
         border-radius: 0.4rem;
         margin: 0.5rem 0;
@@ -71,6 +72,17 @@
     width: calc(100% - 2rem);
     margin: 1rem;
     padding: 1rem;
+}
+
+.answers li {
+    transition-duration: 0.2s;
+}
+
+.selected {
+    background-color: var(--color-accent-orange);
+
+    color: var(--color-border-shadow);
+    text-shadow: 0px 0px 0.125rem var(--color-border-shadow);
 }
 
 .confirmation {

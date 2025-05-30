@@ -3,6 +3,7 @@ import styles from './App.module.css';
 import { Footer } from '@/components/layout/Footer/Footer';
 import { Header } from '@/components/layout/Header/Header';
 import { ProfileContextProvider } from '@/contexts/ProfileContext';
+import { FeedbackPage } from '@/pages/FeedbackPage/FeedbackPage';
 import { IntroductionPage } from '@/pages/IntroductionPage/IntroductionPage';
 import { MainPage } from '@/pages/MainPage/MainPage';
 import { QuestionPage } from '@/pages/QuestionPage/QuestionPage';
@@ -36,6 +37,10 @@ export function App() {
         {
             path: '/question/:id',
             element: <QuestionPage />,
+        },
+        {
+            path: '/question/:id/feedback',
+            element: <FeedbackPage />,
         },
         {
             path: '/recover',

@@ -1,6 +1,13 @@
+import type { QuestionFeedback } from '@/@types/Question';
 import type { DifficultyType } from '@/constants/maps/Difficulty';
 import { useObjectState } from '@/hooks/useObjectState';
 import { type ReactNode, createContext, useContext } from 'react';
+
+export type AnsweredQuestionType = {
+    id: number;
+    difficulty: DifficultyType;
+    feedback: QuestionFeedback;
+};
 
 export type ProfileType = {
     name?: string;
@@ -9,7 +16,7 @@ export type ProfileType = {
     knowledgeLevel?: DifficultyType;
     isReady?: boolean;
     score?: number;
-    currentQuestion?: number;
+    answeredQuestions?: AnsweredQuestionType[];
 };
 
 type ProfileContextType = {

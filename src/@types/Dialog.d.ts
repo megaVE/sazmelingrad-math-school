@@ -1,10 +1,10 @@
+import type { ThemeType } from '@/constants/maps/Theme';
 import type { SelectOption } from './SelectOption';
-import type { ColorTheme } from './Themes';
 
 export type DialogOption = SelectOption & {
     isBlocked?: boolean;
     onChoose?: () => void;
-    theme?: ColorTheme;
+    theme?: ThemeType;
 };
 
 export type DialogNode = {

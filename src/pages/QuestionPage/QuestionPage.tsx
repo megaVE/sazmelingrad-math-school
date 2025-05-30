@@ -3,12 +3,14 @@ import { Title } from '@/components/Title';
 import { DialogRenderer } from '@/components/templates/Dialog/Dialog';
 import { QuestionRender } from '@/components/templates/Question/Question';
 import { questions } from '@/db/questions';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 export function QuestionPage() {
-    const { id } = useParams();
+    const { id: paramId } = useParams();
 
-    const questionId = Number.parseInt(id as string);
+    const navigate = useNavigate();
+
+    const id = Number.parseInt(paramId as string);
 
     const inexistingDialog: DialogNode = {
         message: [],
@@ -25,7 +27,10 @@ export function QuestionPage() {
             '',
 
             'Venha comigo...',
+
+            '',
         ],
+        onFinish: () => navigate('/'),
     };
 
     const initialDialog: DialogNode = {
@@ -39,10 +44,9 @@ export function QuestionPage() {
     };
 
     const startDialogKey = ((): keyof typeof dialogsRecord => {
-        if (Number.isNaN(questionId)) return 'invalidDialog';
+        if (Number.isNaN(id)) return 'invalidDialog';
 
-        if (questionId < 1 || questionId > questions.length)
-            return 'inexistingDialog';
+        if (id < 1 || id > questions.length) return 'inexistingDialog';
 
         return 'initialDialog';
     })();
@@ -50,13 +54,11 @@ export function QuestionPage() {
     return (
         <>
             <Title>Questão {id}</Title>
-            <QuestionRender question={questions[0]} />
-            {false && (
-                <DialogRenderer
-                    dialogsRecord={dialogsRecord}
-                    startDialogKey={startDialogKey}
-                />
-            )}
+            <DialogRenderer
+                dialogsRecord={dialogsRecord}
+                startDialogKey={startDialogKey}
+            />
+            <QuestionRender question={questions[0]} onFinish={() => {}} />
         </>
     );
 }

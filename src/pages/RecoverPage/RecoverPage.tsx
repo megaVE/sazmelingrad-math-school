@@ -1,8 +1,9 @@
 import type { DialogNode } from '@/@types/Dialog';
 import { Title } from '@/components/Title';
 import { DialogRenderer } from '@/components/templates/Dialog/Dialog';
+import type { DifficultyType } from '@/constants/maps/Difficulty';
 import { useProfileContext } from '@/contexts/ProfileContext';
-import { questions } from '@/db/questions';
+import { questionAmounts } from '@/db/questions';
 import { useNavigate } from 'react-router-dom';
 
 export function RecoverPage() {
@@ -23,8 +24,9 @@ export function RecoverPage() {
         }
 
         if (
-            profile.currentQuestion &&
-            profile.currentQuestion < questions.length
+            profile.answeredQuestions &&
+            profile.answeredQuestions.length <
+                questionAmounts[profile.knowledgeLevel as DifficultyType]
         ) {
             return 'pendingQuestionsDialog';
         }

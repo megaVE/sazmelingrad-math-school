@@ -8,3 +8,5 @@ export type Question = {
     correctAnswer: string;
     hints?: string[];
 };
+
+export type QuestionFeedback = 'hit' | 'miss' | 'skipped';

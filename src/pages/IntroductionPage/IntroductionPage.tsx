@@ -48,12 +48,14 @@ export function IntroductionPage() {
         ],
         options: [
             {
-                label: 'Não',
+                label: 'Ainda tenho dificuldades',
                 value: 'easyStart',
+                theme: 'yellow'
             },
             {
-                label: 'Sim',
+                label: 'É coisa fácil',
                 value: 'mediumDialog',
+                theme: 'green'
             },
         ],
     };
@@ -61,6 +63,7 @@ export function IntroductionPage() {
     const easyStart: DialogNode = {
         message: [
             'Ah, tudo bem. Eu entendo que sua cabecinha deve ser meio limitada, então vamos tentar te ajudar com isso.',
+            
             '',
         ],
         onFinish: () => startWithKnowledgeLevel('easy'),
@@ -76,12 +79,14 @@ export function IntroductionPage() {
         ],
         options: [
             {
-                label: 'Não',
+                label: 'Não me sinto tão confortável',
                 value: 'mediumStart',
+                theme: 'yellow'
             },
             {
-                label: 'Sim',
-                value: 'hardStart',
+                label: 'Sim. Consigo me  virar com isso',
+                value: 'hardDialog',
+                theme: 'green'
             },
         ],
     };
@@ -89,6 +94,7 @@ export function IntroductionPage() {
     const mediumStart: DialogNode = {
         message: [
             'Entendo. Vocês têm suas dificuldades e eu preciso ser paciente com isso. É por este motivo que eu fui criada, afinal...',
+
             '',
         ],
         onFinish: () => startWithKnowledgeLevel('medium'),
@@ -104,12 +110,14 @@ export function IntroductionPage() {
         ],
         options: [
             {
-                label: 'Não',
+                label: 'Não, isso vai além das minhas capacidades...',
                 value: 'hardStart',
+                theme: 'yellow'
             },
             {
-                label: 'Sim',
+                label: 'Sou sim.',
                 value: 'veryHardDialog',
+                theme: 'green'
             },
         ],
     };
@@ -135,12 +143,14 @@ export function IntroductionPage() {
         ],
         options: [
             {
-                label: 'Não',
+                label: 'Não...',
                 value: 'veryHardStart',
+                theme: 'yellow'
             },
             {
-                label: 'Sim',
+                label: 'Sim, por que não conseguiria?',
                 value: 'ultimateDialog',
+                theme: 'green'
             },
         ],
     };
@@ -148,6 +158,7 @@ export function IntroductionPage() {
     const veryHardStart: DialogNode = {
         message: [
             'É claro, isso foi uma piada. O que você estaria fazendo aqui afinal se já estivesse nesse nível?',
+
             '',
         ],
         onFinish: () => startWithKnowledgeLevel('very_hard'),
@@ -167,12 +178,17 @@ export function IntroductionPage() {
 
             'E-Espera, você <b>realmente</b> sabe esse tipo de coisa?!',
 
-            'Minha Deusa,... eu sinceramente não sei o que dizer mais...',
+            '<b>Minha Deusa</b>,... eu sinceramente não sei o que dizer mais...',
 
-            `Não, eu vou ser sincera: ${profile.name}, Moye Lyubimoye, você não deveria estar aqui. Esta página é uma <b>Escola de Matemática</b> e não uma <b>Academia Ciêntífica</b>`,
+            `Não, eu vou ser sincera: ${profile.name}, <b>Moye Lyubimoye</b>, você não deveria estar aqui. Esta página é uma <b>Escola de Matemática</b> e não uma <b>Academia Ciêntífica</b>`,
 
             'Você deveria parar de perder seu tempo com <b>problemas bobinhos</b> e ir logo de uma vez trabalhar pra <b>Aeronautica Espacial de Sazmelingrado</b>, e não, não estou sendo irônica, precisamos de muitos como você por lá.',
+
+            'Bom... é isso. Nos vemos lá, ou... em outro canto por aí, quem sabe?',
+
+            ''
         ],
+        onFinish: () => navigate('/')
     };
 
     const dialogsRecord = {

@@ -1,4 +1,4 @@
-import type { CSSProperties } from 'react';
+import type { ThemeType } from './Theme';
 
 export type DifficultyType = 'easy' | 'medium' | 'hard' | 'very_hard';
 
@@ -9,36 +9,9 @@ export const DifficultyMap = new Map<DifficultyType, string>([
     ['very_hard', 'Muito Difícil'],
 ]);
 
-export const DifficultyColorMap = new Map<
-    DifficultyType,
-    Partial<CSSProperties>
->([
-    [
-        'easy',
-        {
-            backgroundColor: '#1a2e1a',
-            color: '#a8ff60',
-        },
-    ],
-    [
-        'medium',
-        {
-            backgroundColor: '#2e2a1a',
-            color: '#ffd36e',
-        },
-    ],
-    [
-        'hard',
-        {
-            backgroundColor: '#2e1e1a',
-            color: '#ff6a00',
-        },
-    ],
-    [
-        'very_hard',
-        {
-            backgroundColor: '#2e1a1a',
-            color: '#ff3c3c',
-        },
-    ],
+export const DifficultyThemeMap = new Map<DifficultyType, ThemeType>([
+    ['easy', 'green'],
+    ['medium', 'yellow'],
+    ['hard', 'orange'],
+    ['very_hard', 'red'],
 ]);

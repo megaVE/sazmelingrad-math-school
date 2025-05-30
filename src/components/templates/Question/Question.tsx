@@ -1,38 +1,83 @@
-import type { Question } from '@/@types/Question';
+import type { Question, QuestionFeedback } from '@/@types/Question';
 import { Button } from '@/components/modular/Button/Button';
 import { TextArea } from '@/components/modular/TextArea/TextArea';
-import { DifficultyColorMap, DifficultyMap } from '@/constants/maps/Difficulty';
-import { questionScores } from '@/db/questions';
+import { DifficultyMap, DifficultyThemeMap } from '@/constants/maps/Difficulty';
+import { ThemeMap, type ThemeType } from '@/constants/maps/Theme';
+import { HINT_FEE, QUESTION_SCORES } from '@/constants/score';
+import { useProfileContext } from '@/contexts/ProfileContext';
 import { useState } from 'react';
 import { Form } from '../Form/Form';
 import styles from './Question.module.css';
 
 interface QuestionRenderProps {
     question: Question;
+    onFinish: (feedback: QuestionFeedback) => void;
 }
 
-export function QuestionRender({ question }: QuestionRenderProps) {
+export function QuestionRender({ question, onFinish }: QuestionRenderProps) {
+    const { profile, setProfile } = useProfileContext();
+
     const [currentAnswer, setCurrentAnswer] = useState('');
     const [usedHints, setUsedHints] = useState(0);
 
-    const questionScore = questionScores[question.difficulty].hit;
+    const { hit: questionHitScore, miss: questionMissScore } =
+        QUESTION_SCORES[question.difficulty];
+
+    const hintCost = HINT_FEE * questionHitScore;
 
     function handleSelectAnswer(value: string) {
         setCurrentAnswer(state => (state === value ? '' : value));
     }
 
-    function handleAnalyseQuestion() {}
+    const getScoreText = (score: number) =>
+        `${score} Ponto${score > 1 || score < -1 ? 's' : ''}`;
+
+    function handleConfirm() {
+        const isAnswerCorrect = currentAnswer === question.correctAnswer;
+
+        const answerScore = isAnswerCorrect
+            ? questionHitScore
+            : questionMissScore;
+
+        setProfile({
+            score: (profile.score as number) + answerScore,
+        });
+
+        onFinish(isAnswerCorrect ? 'hit' : 'miss');
+    }
+
+    function handleGiveUp() {
+        const giveUpConfirm = window.confirm(
+            'Tem certeza que deseja desistir desta questão? Você não perde e nem ganha nenhum ponto caso decida desistir.',
+        );
+
+        if (giveUpConfirm) {
+            return onFinish('skipped');
+        }
+    }
 
     return (
         <div className={styles.container}>
             <div className={styles.question_header}>
                 <span
-                    style={{ ...DifficultyColorMap.get(question.difficulty) }}
+                    style={{
+                        ...ThemeMap.get(
+                            DifficultyThemeMap.get(
+                                question.difficulty,
+                            ) as ThemeType,
+                        ),
+                    }}
                 >
                     {DifficultyMap.get(question.difficulty)}
                 </span>
                 <span>
-                    ({questionScore} Ponto{questionScore > 1 && 's'})
+                    {getScoreText(questionHitScore - usedHints * hintCost)}{' '}
+                    {usedHints > 0 && (
+                        <>
+                            ({getScoreText(questionHitScore)} -{' '}
+                            {getScoreText(usedHints * hintCost)})
+                        </>
+                    )}
                 </span>
                 <p>&#65282;{question.description}&#65282;</p>
             </div>
@@ -58,6 +103,7 @@ export function QuestionRender({ question }: QuestionRenderProps) {
                             <li>
                                 <Button
                                     className="feedback-button"
+                                    theme="yellow"
                                     onClick={() =>
                                         setUsedHints(state => state + 1)
                                     }
@@ -65,7 +111,7 @@ export function QuestionRender({ question }: QuestionRenderProps) {
                                         usedHints >= question.hints.length
                                     }
                                 >
-                                    Pedir Dica
+                                    Pedir Dica (- {hintCost} Pontos)
                                 </Button>
                             </li>
                         )}
@@ -80,13 +126,18 @@ export function QuestionRender({ question }: QuestionRenderProps) {
                 )}
             </ul>
             <Form.Section className={styles.confirmation}>
-                <Button className="feedback-button" onClick={() => {}}>
+                <Button
+                    className="feedback-button"
+                    theme="red"
+                    onClick={handleGiveUp}
+                >
                     Desistir
                 </Button>
                 <Button
                     className="feedback-button"
-                    onClick={handleAnalyseQuestion}
-                    disabled={Boolean(currentAnswer)}
+                    theme="green"
+                    onClick={handleConfirm}
+                    disabled={!currentAnswer}
                 >
                     Confirmar
                 </Button>

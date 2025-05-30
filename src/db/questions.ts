@@ -130,40 +130,17 @@ export const questions: Question[] = [
     },
 ];
 
-export const questionScores: Record<
-    DifficultyType,
-    { hit: number; miss: number }
-> = {
-    easy: {
-        hit: 5,
-        miss: -10,
-    },
-    medium: {
-        hit: 10,
-        miss: -7,
-    },
-    hard: {
-        hit: 15,
-        miss: -5,
-    },
-    very_hard: {
-        hit: 20,
-        miss: -3,
-    },
-};
+const countQuestionsByDifficulty = (difficulty: DifficultyType) =>
+    questions.filter(question => question.difficulty === difficulty).length;
 
-const easyQuestions = questions.filter(
-    question => question.difficulty === 'easy',
-).length;
-const mediumQuestions =
-    easyQuestions +
-    questions.filter(question => question.difficulty === 'medium').length;
-const hardQuestions =
-    mediumQuestions +
-    questions.filter(question => question.difficulty === 'hard').length;
+const easyQuestions = countQuestionsByDifficulty('easy');
+
+const mediumQuestions = easyQuestions + countQuestionsByDifficulty('medium');
+
+const hardQuestions = mediumQuestions + countQuestionsByDifficulty('hard');
+
 const veryHardQuestions =
-    hardQuestions +
-    questions.filter(question => question.difficulty === 'very_hard').length;
+    hardQuestions + countQuestionsByDifficulty('very_hard');
 
 export const questionAmounts: Record<DifficultyType, number> = {
     easy: easyQuestions,

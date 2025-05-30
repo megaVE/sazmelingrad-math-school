@@ -50,10 +50,12 @@ export function TutorialPage() {
             {
                 label: 'Não',
                 value: 'startDialog',
+                theme: 'yellow',
             },
             {
                 label: 'Sim',
                 value: 'tutorialDialog',
+                theme: 'green',
             },
         ],
     };
